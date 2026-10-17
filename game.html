@@ -366,7 +366,7 @@
 
   <!-- 顶部校名条 -->
   <div class="top-bar">
-    <div class="badge"><img src="https://aka.doubaocdn.com/s/C7k0cxqUW3" alt="校徽"></div>
+    <div class="badge"><img src="assets/badge-mascot.jpg" alt="校徽"></div>
     <div class="titles">
       <div class="school">黄冈师范学院 · 奶龙大学</div>
       <span class="game-tag">校园寻龙记 GAME</span>
@@ -375,7 +375,7 @@
 
   <!-- ===== 开始屏 ===== -->
   <div class="panel start-screen active" id="startPanel">
-    <div class="mascot"><img src="https://aka.doubaocdn.com/s/C7k0cxqUW3" alt="奶龙"></div>
+    <div class="mascot"><img src="assets/badge-mascot.jpg" alt="奶龙"></div>
     <span class="kicker">CAMPUS DRAGON HUNT</span>
     <h1>校园<em>寻龙记</em></h1>
     <p class="sub">奶龙悄悄溜进了校园实景照片里<br>把它们全部找出来吧！</p>
@@ -425,7 +425,7 @@
   <!-- 过关弹层 -->
   <div class="overlay" id="passOverlay">
     <div class="card">
-      <div class="big-mascot"><img src="https://aka.doubaocdn.com/s/C7k0cxqUW3" alt="奶龙"></div>
+      <div class="big-mascot"><img src="assets/badge-mascot.jpg" alt="奶龙"></div>
       <h2 id="passTitle">本关达成！</h2>
       <p id="passSub">你找到了这一关的全部奶龙</p>
       <div class="found-line" id="passLine">发现 3 / 3 只</div>
@@ -436,7 +436,7 @@
   <!-- 通关弹层（最后一关） -->
   <div class="overlay" id="finalOverlay">
     <div class="card">
-      <div class="big-mascot" style="width:96px;height:96px;"><img src="https://aka.doubaocdn.com/s/C7k0cxqUW3" alt="奶龙"></div>
+      <div class="big-mascot" style="width:96px;height:96px;"><img src="assets/badge-mascot.jpg" alt="奶龙"></div>
       <h2>🎉 全部找齐！</h2>
       <p>11 只奶龙全部归队</p>
       <div class="found-line">「奶龙大学荣誉侦探」称号已解锁</div>
@@ -453,21 +453,21 @@
 
   /* ============ 关卡数据（坐标来自合成图定位） ============ */
   var IMG = {
-    badge: "https://aka.doubaocdn.com/s/C7k0cxqUW3",
+    badge: "assets/badge-mascot.jpg",
     emojis: [
-      "https://aka.doubaocdn.com/s/tONnzdNjF9",
-      "https://aka.doubaocdn.com/s/FOyfVVSNNV",
-      "https://aka.doubaocdn.com/s/er8LIys4da",
-      "https://aka.doubaocdn.com/s/FeNRn5XbI8",
-      "https://aka.doubaocdn.com/s/FOzVe166xL",
-      "https://aka.doubaocdn.com/s/NFQ2FRH9VL"
+      "assets/emoji1.jpg",
+      "assets/emoji2.jpg",
+      "assets/emoji3.jpg",
+      "assets/emoji4.jpg",
+      "assets/emoji5.jpg",
+      "assets/emoji6.jpg"
     ]
   };
 
   var LEVELS = [
     {
       name: "第 1 关 · 公园午后",
-      img: "https://aka.doubaocdn.com/s/MxOiifGiw1",
+      img: "assets/scene1.jpg",
       spots: [
         { x: 10,  y: 85, r: 10, clue: "左下角的灌木丛边，好像有双眼睛…" },
         { x: 22,  y: 60, r: 9,  clue: "大树干后面，露出来了一点点…" },
@@ -476,7 +476,7 @@
     },
     {
       name: "第 2 关 · 林荫步道",
-      img: "https://aka.doubaocdn.com/s/ypVLQBmV0C",
+      img: "assets/scene2.jpg",
       spots: [
         { x: 34.4, y: 75.8, r: 8, clue: "左侧树旁的砖地上…" },
         { x: 72.2, y: 77.3, r: 8, clue: "右侧电动车堆旁边…" }
@@ -484,7 +484,7 @@
     },
     {
       name: "第 3 关 · 夜晚球场",
-      img: "https://aka.doubaocdn.com/s/TXYBPOh4mf",
+      img: "assets/scene3.jpg",
       spots: [
         { x: 6.5, y: 63, r: 9,  clue: "绿色围网边，靠着一只…" },
         { x: 90,  y: 55, r: 10, clue: "场地右侧，它正朝你挥手" }
@@ -492,7 +492,7 @@
     },
     {
       name: "第 4 关 · 博学楼前",
-      img: "https://aka.doubaocdn.com/s/EzhOfoRIZf",
+      img: "assets/scene4.jpg",
       spots: [
         { x: 27.2, y: 86.9, r: 9, clue: "左边石阶旁，两只小黄玩偶里混进了一只…" },
         { x: 51.5, y: 88.2, r: 9, clue: "台阶上立着的那只，仔细看看？" }
@@ -500,7 +500,7 @@
     },
     {
       name: "第 5 关 · 羽毛球馆",
-      img: "https://aka.doubaocdn.com/s/bROiOdWyuc",
+      img: "assets/scene5.jpg",
       spots: [
         { x: 85.6, y: 74.6, r: 9,  clue: "右下场地标线旁，混在装备堆里…" },
         { x: 13.2, y: 61.8, r: 10, clue: "羽毛球网柱上，挂着一只？" }
@@ -564,6 +564,14 @@
     return found.filter(Boolean).length + " / " + lv.spots.length;
   }
 
+  /* ===== 图片预加载（进入游戏时提前缓存全部关卡图） ===== */
+  var preloadImgs = [];
+  LEVELS.forEach(function (lv) {
+    var im = new Image();
+    im.src = lv.img;
+    preloadImgs.push(im);
+  });
+
   /* ============ 进入关卡 ============ */
   function enterLevel(idx) {
     levelIdx = idx;
@@ -577,8 +585,15 @@
     hintText.textContent = "找到这一关的全部奶龙！";
 
     sceneImg.classList.add("hidden");
+    // 先绑定事件再赋值 src，避免缓存命中时 load 先于绑定触发导致 loading 永不消失
+    sceneImg.onload = function () {
+      sceneImg.classList.remove("hidden");
+    };
+    sceneImg.onerror = function () {
+      sceneImg.classList.remove("hidden");
+      showToast("图片加载失败，请检查网络后重进本关");
+    };
     sceneImg.src = lv.img;
-    sceneImg.onload = function () { sceneImg.classList.remove("hidden"); };
 
     // 清掉旧的标记元素
     var olds = sceneWrap.querySelectorAll(".found-badge, .ripple, .bubble");
