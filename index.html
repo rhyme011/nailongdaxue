@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黄冈师范学院奶龙大学.com · 赛博域名正式上线（竖版）</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --blue: #173B8C;
+    --blue-deep: #0F2B66;
+    --blue-mid: #1E4FA3;
+    --blue-soft: #E8EFFB;
+    --gold: #FFC82E;
+    --gold-deep: #E0A800;
+    --paper: #FFFDF8;
+    --ink: #22242B;
+    --muted: #66708A;
+    --line: #DCE4F5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: var(--blue-deep);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, .serif { font-family: "Noto Serif SC", "Songti SC", "SimSun", serif; }
+
+  /* ===== 手机竖版容器 ===== */
+  .phone {
+    max-width: 440px;
+    margin: 0 auto;
+    background: var(--paper);
+    min-height: 100vh;
+    box-shadow: 0 0 60px rgba(0,0,0,.35);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ===== 顶部校名条 ===== */
+  .top-bar {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+    color: #F4EEDB;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .top-bar .badge {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 3px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.25);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .top-bar .badge img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .top-bar .titles { flex: 1; min-width: 0; }
+  .top-bar .school { font-size: 17px; font-weight: 700; letter-spacing: 2px; white-space: nowrap; }
+  .top-bar .campus {
+    display: inline-block;
+    margin-top: 2px;
+    background: var(--gold);
+    color: var(--blue-deep);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 999px;
+    letter-spacing: 1px;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    background: linear-gradient(160deg, var(--blue) 0%, var(--blue-deep) 78%);
+    color: #F7F1E0;
+    text-align: center;
+    padding: 34px 22px 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    left: -80px; top: -80px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 200, 46, .28), transparent 70%);
+    pointer-events: none;
+  }
+  .hero .kicker {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    background: rgba(255,255,255,.08);
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,200,46,.5);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1.25;
+  }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero .sub { font-size: 14px; opacity: .92; margin-top: 10px; }
+  .hero .domain-chip {
+    margin: 16px auto 0;
+    background: rgba(255,255,255,.12);
+    border: 1px dashed rgba(255,200,46,.6);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 12.5px;
+    font-family: "Noto Sans SC", sans-serif;
+    color: #FFF7E2;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    max-width: 100%;
+  }
+  .hero .domain-chip b { color: var(--gold); }
+  .hero .dino {
+    margin: 22px auto 0;
+    width: 232px;
+    height: 232px;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 3px solid var(--gold);
+    box-shadow: 0 14px 34px rgba(0,0,0,.35);
+    animation: floaty 3.4s ease-in-out infinite;
+  }
+  .hero .dino img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ===== 公告 ===== */
+  .notice {
+    margin: 20px 16px 0;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--gold);
+    border-radius: 0 14px 14px 0;
+    padding: 18px 20px;
+    box-shadow: 0 6px 20px rgba(15, 43, 102, .08);
+  }
+  .notice .head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .notice .head .dot { width: 12px; height: 12px; background: var(--blue); border-radius: 2px; transform: rotate(45deg); flex-shrink: 0; }
+  .notice .head h2 { font-size: 18px; font-weight: 900; color: var(--blue); letter-spacing: 2px; }
+  .notice p { font-size: 14px; }
+  .notice p b { color: var(--blue); }
+
+  /* ===== 交互 ===== */
+  .jump {
+    margin: 20px 16px 0;
+    background: var(--blue-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .jump .lead { font-size: 13px; color: var(--blue-deep); font-weight: 700; }
+  .jump .row { display: flex; gap: 10px; margin-top: 12px; }
+  .jump input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 13px 14px;
+    font-size: 14px;
+    font-family: "Noto Sans SC", sans-serif;
+    color: var(--ink);
+    background: #fff;
+    outline: none;
+  }
+  .jump input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(23,59,140,.15); }
+  .jump button {
+    border: none;
+    border-radius: 10px;
+    padding: 0 22px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Noto Sans SC", sans-serif;
+    background: var(--blue);
+    color: #FFF7E2;
+    cursor: pointer;
+    min-height: 46px;
+    white-space: nowrap;
+    transition: background .15s, transform .15s;
+  }
+  .jump button:hover { background: var(--blue-mid); transform: translateY(-1px); }
+  .jump .tip { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+  /* ===== 表情包画廊 ===== */
+  .gallery { margin: 26px 16px 0; }
+  .gallery .g-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+  .gallery .g-head h2 { font-size: 19px; font-weight: 900; color: var(--blue-deep); }
+  .gallery .g-head span { font-size: 11px; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cell {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(15,43,102,.07);
+  }
+  .cell .pic { aspect-ratio: 1 / 1; background: #F5F7FC; position: relative; }
+  .cell .pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cell .cap { padding: 9px 12px 12px; font-size: 12.5px; color: var(--ink); line-height: 1.5; }
+  .cell .cap b { color: var(--blue); }
+
+  /* ===== 校园快讯 ===== */
+  .news { margin: 26px 16px 0; }
+  .news .n-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+  .news .n-head h2 { font-size: 19px; font-weight: 900; color: var(--blue-deep); }
+  .news .n-head span { font-size: 11px; color: var(--muted); }
+  .news-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .news-item .ic { color: var(--blue); flex-shrink: 0; margin-top: 2px; }
+  .news-item h3 { font-size: 14px; font-weight: 700; }
+  .news-item .d { font-size: 11.5px; color: var(--gold-deep); margin-top: 4px; display: block; }
+
+  /* ===== 页脚 ===== */
+  footer {
+    margin-top: 30px;
+    background: linear-gradient(160deg, var(--blue) 0%, var(--blue-deep) 100%);
+    color: #E9E2CE;
+    padding: 24px 18px 34px;
+    font-size: 12.5px;
+    text-align: center;
+  }
+  footer .dis {
+    border: 1px dashed rgba(255,200,46,.55);
+    border-radius: 10px;
+    padding: 12px 14px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+  footer .dis b { color: var(--gold); }
+  footer .copy { opacity: .9; }
+
+  /* ===== toast ===== */
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%) translateY(16px);
+    background: var(--ink);
+    color: #FFF;
+    padding: 11px 20px;
+    border-radius: 999px;
+    font-size: 13.5px;
+    box-shadow: 0 10px 28px rgba(0,0,0,.32);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s, transform .25s;
+    z-index: 99;
+    max-width: 88vw;
+    text-align: center;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (min-width: 441px) {
+    .phone { margin: 24px auto; min-height: auto; border-radius: 28px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .dino { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="phone">
+
+  <!-- ===== 顶部校名条 ===== -->
+  <header class="top-bar">
+    <span class="badge"><img src="https://aka.doubaocdn.com/s/7HBovEhdAw" alt="黄冈师范学院校徽"></span>
+    <div class="titles">
+      <div class="school">黄冈师范学院</div>
+      <span class="campus">奶龙大学 · 赛博分校区</span>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <span class="kicker">CYBER DOMAIN · SINCE 2026</span>
+    <h1>欢迎来到<em>「奶龙大学」</em></h1>
+    <p class="sub">黄冈师范学院赛博分校区 · 今日正式开课</p>
+    <span class="domain-chip" id="domainChip">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      https://<b>黄冈师范学院奶龙大学.com</b>/&nbsp;· 点击复制
+    </span>
+    <div class="dino">
+      <img src="https://aka.doubaocdn.com/s/C7k0cxqUW3" alt="佩戴黄冈师范学院校徽的奶龙吉祥物">
+    </div>
+  </section>
+
+  <!-- ===== 公告 ===== -->
+  <section class="notice">
+    <div class="head">
+      <span class="dot"></span>
+      <h2>重要通知</h2>
+    </div>
+    <p>各位同学请注意：我校<b>“黄冈师范学院奶龙大学.com”</b>赛博域名今日正式上线，输入即可跳转本校官网。
+      本页面<b>仅娱乐整活，非官方域名变更，适度抽象</b>，切勿当真，课还是要上的。</p>
+  </section>
+
+  <!-- ===== 交互 ===== -->
+  <section class="jump">
+    <p class="lead">输入你的赛博域名，一键直达本校官网</p>
+    <div class="row">
+      <input id="domainInput" type="text" value="www.hgnu.edu.cn" aria-label="输入域名" spellcheck="false">
+      <button id="jumpBtn" type="button">进入官网</button>
+    </div>
+    <p class="tip">输了不亏，赢了血赚。跳转链接指向黄冈师范学院官方网站。</p>
+  </section>
+
+  <!-- ===== 表情包画廊 ===== -->
+  <section class="gallery">
+    <div class="g-head"><h2>奶龙表情包</h2><span>欢迎下载使用</span></div>
+    <div class="grid">
+      <div class="cell">
+        <div class="pic"><img src="https://aka.doubaocdn.com/s/tONnzdNjF9" alt="举手报到的小恐龙" loading="lazy"></div>
+        <div class="cap"><b>早八第一课</b>，举手报到！</div>
+      </div>
+      <div class="cell">
+        <div class="pic"><img src="https://aka.doubaocdn.com/s/FOyfVVSNNV" alt="比耶的小恐龙" loading="lazy"></div>
+        <div class="cap">入学照先拍一张，<b>稳了</b></div>
+      </div>
+      <div class="cell">
+        <div class="pic"><img src="https://aka.doubaocdn.com/s/er8LIys4da" alt="抱臂围观的小恐龙" loading="lazy"></div>
+        <div class="cap">围观期末考试现场：<b>稳如老恐龙</b></div>
+      </div>
+      <div class="cell">
+        <div class="pic"><img src="https://aka.doubaocdn.com/s/FeNRn5XbI8" alt="练太极的小恐龙" loading="lazy"></div>
+        <div class="cap">体育课新项目：<b>奶龙太极</b></div>
+      </div>
+      <div class="cell">
+        <div class="pic"><img src="https://aka.doubaocdn.com/s/FOzVe166xL" alt="思考人生的小恐龙" loading="lazy"></div>
+        <div class="cap">复习到一半，<b>思考恐龙生</b></div>
+      </div>
+      <div class="cell">
+        <div class="pic"><img src="https://aka.doubaocdn.com/s/NFQ2FRH9VL" alt="叉腰的小恐龙" loading="lazy"></div>
+        <div class="cap">食堂阿姨：<b>今天的饭必须光盘</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 校园快讯 ===== -->
+  <section class="news">
+    <div class="n-head"><h2>校园快讯</h2><span>以下均为整活</span></div>
+    <article class="news-item">
+      <span class="ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L9.5 22 20 9.5H13z"/></svg></span>
+      <div>
+        <h3>我校“奶龙大学”赛博域名正式上线，打卡人数突破一万人次</h3>
+        <span class="d">2026-10-17</span>
+      </div>
+    </article>
+    <article class="news-item">
+      <span class="ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+      <div>
+        <h3>图书馆新吉祥物上岗，主职卖萌，副职劝学</h3>
+        <span class="d">2026-10-16</span>
+      </div>
+    </article>
+    <article class="news-item">
+      <span class="ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+      <div>
+        <h3>教务处提醒：上课别迟到，恐龙都比你早到</h3>
+        <span class="d">2026-10-15</span>
+      </div>
+    </article>
+    <article class="news-item">
+      <span class="ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+      <div>
+        <h3>运动会新增“恐龙赛跑”项目，暂不设奖牌</h3>
+        <span class="d">2026-10-14</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===== 页脚 ===== -->
+  <footer>
+    <div class="dis">
+      <b>免责声明：</b>本页面为师生趣味整活作品，模仿高校官网风格仅为娱乐效果。“奶龙大学”为虚拟玩梗概念，
+      非真实校区，<b>非官方域名变更</b>。跳转链接指向黄冈师范学院官方网站（www.hgnu.edu.cn），
+      请以学校官方发布信息为准。
+    </div>
+    <p class="copy">© 2026 黄冈师范学院奶龙大学（整活版）· 祝同学们学业顺利，天天开心</p>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  var toastEl = document.getElementById("toast");
+  var toastTimer = null;
+
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toastEl.classList.remove("show");
+    }, 2200);
+  }
+
+  var OFFICIAL_URL = "https://www.hgnu.edu.cn/main.htm";
+  var domainText = "https://黄冈师范学院奶龙大学.com/";
+
+  /* 域名点击复制 */
+  document.getElementById("domainChip").addEventListener("click", function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(domainText).then(function () {
+        showToast("赛博域名已复制，快去发朋友圈整活～");
+      })["catch"](function () {
+        fallbackCopy();
+      });
+    } else {
+      fallbackCopy();
+    }
+    function fallbackCopy() {
+      var ta = document.createElement("textarea");
+      ta.value = domainText;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); showToast("赛博域名已复制，快去发朋友圈整活～"); }
+      catch (e) { showToast("复制失败，请手动复制域名"); }
+      document.body.removeChild(ta);
+    }
+  });
+
+  /* 跳转交互 */
+  var input = document.getElementById("domainInput");
+  var jumpBtn = document.getElementById("jumpBtn");
+
+  function doJump() {
+    var val = (input.value || "").trim();
+    if (val.indexOf("奶龙") !== -1 || val.indexOf("恐龙") !== -1) {
+      showToast("奶龙大学实体校区还在建设中，先带你回本校官网～");
+      window.open(OFFICIAL_URL, "_blank");
+      return;
+    }
+    if (val.indexOf("hgnu") === -1 && val.indexOf("hgnc") === -1 && val.indexOf("edu") === -1) {
+      showToast("未识别的域名已自动校正，正在带你前往本校官网～");
+      window.open(OFFICIAL_URL, "_blank");
+      return;
+    }
+    var target = val.indexOf("://") === -1 ? "https://" + val : val;
+    window.open(target, "_blank");
+    showToast("正在为你跳转，别迷路～");
+  }
+
+  jumpBtn.addEventListener("click", doJump);
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); doJump(); }
+  });
+})();
+</script>
+</body>
+</html>
