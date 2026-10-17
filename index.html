@@ -197,6 +197,56 @@
   .jump button:hover { background: var(--blue-mid); transform: translateY(-1px); }
   .jump .tip { font-size: 12px; color: var(--muted); margin-top: 10px; }
 
+  /* ===== 找奶龙游戏入口 ===== */
+  .game-entry {
+    margin: 22px 16px 0;
+    background: linear-gradient(150deg, var(--blue) 0%, var(--blue-deep) 82%);
+    border: 2px solid var(--gold);
+    border-radius: 18px;
+    padding: 20px 18px 18px;
+    color: #F7F1E0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .game-entry::before {
+    content: "";
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,200,46,.30), transparent 70%);
+    pointer-events: none;
+  }
+  .game-entry .g-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--blue-deep);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 999px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .game-entry h2 { font-size: 21px; font-weight: 900; color: #fff; letter-spacing: 1px; }
+  .game-entry h2 em { font-style: normal; color: var(--gold); }
+  .game-entry p { font-size: 13px; color: #CDD8F2; margin: 8px 0 14px; }
+  .game-entry a {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+    color: var(--blue-deep);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 12px 34px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(224,168,0,.4);
+    transition: transform .15s;
+  }
+  .game-entry a:active { transform: scale(.96); }
+
   /* ===== 表情包画廊 ===== */
   .gallery { margin: 26px 16px 0; }
   .gallery .g-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
@@ -328,6 +378,14 @@
       <button id="jumpBtn" type="button">进入官网</button>
     </div>
     <p class="tip">输了不亏，赢了血赚。跳转链接指向黄冈师范学院官方网站。</p>
+  </section>
+
+  <!-- ===== 找奶龙游戏入口 ===== -->
+  <section class="game-entry">
+    <span class="g-tag">NEW · 全新玩法</span>
+    <h2>校园<em>寻龙记</em></h2>
+    <p>奶龙偷偷溜进了校园实景照片里<br>5 个场景 · 藏了 11 只，看看你能找到几只？</p>
+    <a href="/game.html">开始找奶龙 →</a>
   </section>
 
   <!-- ===== 表情包画廊 ===== -->
