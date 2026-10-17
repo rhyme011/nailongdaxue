@@ -170,9 +170,13 @@
     display: block; width: 100%; height: auto;
     user-select: none; -webkit-user-drag: none;
   }
+  /* 加载完成前先隐藏图片，避免破图闪现 */
+  .scene-wrap img.scene.hidden { display: none; }
+  /* 遮罩默认隐藏，仅在图片尚未加载完成（hidden）时显示 */
   .scene-wrap .loading {
     position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
+    display: none;
+    align-items: center; justify-content: center;
     color: var(--gold); font-size: 13px; letter-spacing: 2px;
     background: #10142a;
   }
@@ -401,7 +405,7 @@
     </div>
     <div class="hint-strip"><span class="lamp">💡</span><span id="hintText">找到全部奶龙即可过关！</span></div>
     <div class="footer">
-      <a href="/">← 返回奶龙大学主页</a>　·　仅供整活娱乐　·　v2.1 直链版
+      <a href="/">← 返回奶龙大学主页</a>　·　仅供整活娱乐　·　v2.2 修复版
     </div>
   </div>
 
