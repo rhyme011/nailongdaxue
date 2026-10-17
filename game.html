@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>校园寻龙记 · 黄冈师范学院奶龙大学</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --blue: #173B8C;
+    --blue-deep: #0F2B66;
+    --blue-mid: #1E4FA3;
+    --blue-soft: #E8EFFB;
+    --gold: #FFC82E;
+    --gold-deep: #E0A800;
+    --paper: #FFFDF8;
+    --ink: #22242B;
+    --muted: #66708A;
+    --line: #DCE4F5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: var(--blue-deep);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, .serif { font-family: "Noto Serif SC", "Songti SC", "SimSun", serif; }
+
+  .phone {
+    max-width: 440px;
+    margin: 0 auto;
+    background: var(--paper);
+    min-height: 100vh;
+    box-shadow: 0 0 60px rgba(0,0,0,.35);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== 顶部校名条 ===== */
+  .top-bar {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+    color: #F4EEDB;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 20;
+  }
+  .top-bar .badge {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 3px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.25);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .top-bar .badge img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .top-bar .titles { flex: 1; min-width: 0; }
+  .top-bar .school { font-size: 16px; font-weight: 700; letter-spacing: 2px; white-space: nowrap; }
+  .top-bar .game-tag {
+    display: inline-block;
+    margin-top: 2px;
+    background: var(--gold);
+    color: var(--blue-deep);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 999px;
+    letter-spacing: 1px;
+  }
+
+  /* ===== 通用面板 ===== */
+  .panel {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+  }
+  .panel.active { display: flex; }
+
+  /* ===== 开始屏 ===== */
+  .start-screen { align-items: center; justify-content: center; padding: 30px 24px 40px; text-align: center; }
+  .start-screen .mascot {
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    border: 5px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(23,59,140,.35), 0 0 0 8px var(--blue-soft);
+    overflow: hidden;
+    background: #fff;
+    margin: 26px auto 20px;
+    animation: floaty 3s ease-in-out infinite;
+  }
+  .start-screen .mascot img { width: 100%; height: 100%; object-fit: cover; }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .start-screen .kicker {
+    font-size: 12px; letter-spacing: 3px; color: var(--blue);
+    background: var(--blue-soft); display: inline-block;
+    padding: 5px 14px; border-radius: 999px; border: 1px solid var(--line);
+  }
+  .start-screen h1 { font-size: 32px; font-weight: 900; color: var(--blue-deep); margin: 10px 0 2px; }
+  .start-screen h1 em { font-style: normal; color: var(--gold-deep); }
+  .start-screen .sub { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+  .rules {
+    background: var(--blue-soft);
+    border: 1px dashed var(--blue-mid);
+    border-radius: 16px;
+    padding: 16px 18px;
+    text-align: left;
+    font-size: 13.5px;
+    color: var(--blue-deep);
+    margin-bottom: 26px;
+    width: 100%;
+  }
+  .rules li { list-style: none; margin: 7px 0; padding-left: 26px; position: relative; }
+  .rules li::before {
+    content: "🐉"; position: absolute; left: 0; top: 0;
+  }
+  .rules b { color: var(--gold-deep); }
+  .btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+    color: var(--blue-deep);
+    font-size: 17px; font-weight: 700;
+    padding: 14px 46px;
+    border: none; border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(224,168,0,.45);
+    transition: transform .15s, box-shadow .15s;
+    letter-spacing: 2px;
+  }
+  .btn:active { transform: scale(.96); }
+  .btn.ghost {
+    background: transparent;
+    color: var(--blue-mid);
+    border: 2px solid var(--blue-mid);
+    box-shadow: none;
+    font-size: 14px; padding: 10px 30px;
+  }
+  .btn.ghost:active { background: var(--blue-soft); }
+
+  /* ===== 关卡屏 ===== */
+  .stage-screen { position: relative; }
+  .stage-head {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+    color: #F4EEDB;
+    padding: 10px 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .stage-head .stage-name { flex: 1; font-weight: 700; font-size: 15px; }
+  .stage-head .counter {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,200,46,.5);
+    color: var(--gold);
+    font-size: 12.5px; font-weight: 700;
+    padding: 3px 12px; border-radius: 999px;
+  }
+  .stage-progress { background: var(--blue-deep); height: 5px; }
+  .stage-progress .bar {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-deep));
+    transition: width .4s ease;
+  }
+  .scene-wrap { position: relative; background: #10142a; }
+  .scene-wrap img.scene {
+    display: block; width: 100%; height: auto;
+    user-select: none; -webkit-user-drag: none;
+  }
+  .scene-wrap .loading {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 13px; letter-spacing: 2px;
+    background: #10142a;
+  }
+  .scene-wrap img.scene.hidden + .loading { display: flex; }
+  .hint-strip {
+    background: var(--paper);
+    border-top: 2px solid var(--gold);
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--blue-deep);
+    min-height: 38px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hint-strip .lamp { font-size: 15px; }
+
+  /* ===== 找到的奶龙徽章 ===== */
+  .found-badge {
+    position: absolute;
+    width: 66px; height: 66px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    box-shadow: 0 4px 14px rgba(0,0,0,.45), 0 0 0 5px rgba(255,200,46,.35);
+    overflow: hidden;
+    background: #fff;
+    transform: translate(-50%, -50%) scale(0);
+    animation: pop .5s cubic-bezier(.34,1.56,.64,1) forwards;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .found-badge img { width: 100%; height: 100%; object-fit: cover; }
+  .found-badge::after {
+    content: "✓";
+    position: absolute; right: -4px; bottom: -4px;
+    width: 24px; height: 24px;
+    background: var(--gold); color: var(--blue-deep);
+    border-radius: 50%; border: 2px solid #fff;
+    font-size: 13px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @keyframes pop {
+    0% { transform: translate(-50%, -50%) scale(0) rotate(-30deg); }
+    70% { transform: translate(-50%, -50%) scale(1.15) rotate(6deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotate(0); }
+  }
+  .ripple {
+    position: absolute;
+    border: 3px solid rgba(255,200,46,.8);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple .6s ease-out forwards;
+    pointer-events: none;
+    z-index: 4;
+  }
+  @keyframes ripple {
+    0% { width: 20px; height: 20px; opacity: 1; }
+    100% { width: 150px; height: 150px; opacity: 0; }
+  }
+
+  /* ===== 浮动台词 ===== */
+  .bubble {
+    position: absolute;
+    background: var(--blue-deep);
+    color: var(--gold);
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 7px 13px;
+    border-radius: 999px;
+    border: 2px solid var(--gold);
+    transform: translate(-50%, -130%);
+    animation: bubbleUp 1.2s ease-out forwards;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 6;
+    box-shadow: 0 4px 12px rgba(0,0,0,.35);
+  }
+  .bubble::after {
+    content: ""; position: absolute; left: 50%; bottom: -7px;
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid var(--gold);
+    transform: translateX(-50%);
+  }
+  @keyframes bubbleUp {
+    0% { opacity: 0; transform: translate(-50%, -120%) scale(.7); }
+    15% { opacity: 1; transform: translate(-50%, -135%) scale(1); }
+    75% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -190%) scale(.9); }
+  }
+
+  /* ===== 过关 / 通关弹层 ===== */
+  .overlay {
+    position: absolute; inset: 0;
+    background: rgba(15,43,102,.78);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 30;
+    padding: 24px;
+  }
+  .overlay.show { display: flex; }
+  .card {
+    background: var(--paper);
+    border-radius: 22px;
+    padding: 26px 24px;
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    animation: cardIn .45s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes cardIn {
+    0% { transform: translateY(40px) scale(.8); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  .card .big-mascot {
+    width: 92px; height: 92px;
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+    overflow: hidden;
+    background: #fff;
+    margin: 0 auto 12px;
+  }
+  .card .big-mascot img { width: 100%; height: 100%; object-fit: cover; }
+  .card h2 { color: var(--blue-deep); font-size: 22px; margin-bottom: 6px; }
+  .card p { color: var(--muted); font-size: 13.5px; margin-bottom: 6px; }
+  .card .found-line { color: var(--gold-deep); font-weight: 700; font-size: 14px; margin-bottom: 16px; }
+  .card .btn { margin: 6px 6px 0; padding: 11px 28px; font-size: 15px; }
+  .card .btn.ghost { margin-top: 10px; }
+
+  /* ===== 通关屏 ===== */
+  .win-screen { align-items: center; justify-content: center; padding: 30px 22px 40px; text-align: center; }
+  .win-screen .trophy {
+    font-size: 70px;
+    margin: 10px auto 6px;
+    animation: floaty 2.6s ease-in-out infinite;
+  }
+  .win-screen h1 { font-size: 27px; color: var(--blue-deep); margin-bottom: 8px; }
+  .win-screen .sub { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
+  .win-gallery {
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    margin: 12px 0 20px;
+  }
+  .win-gallery img {
+    width: 74px; height: 74px;
+    border-radius: 16px;
+    border: 2px solid var(--line);
+    background: #fff;
+    object-fit: cover;
+  }
+  .win-screen .stat {
+    display: inline-block;
+    background: var(--blue-soft);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--blue-deep);
+    font-size: 13px; font-weight: 700;
+    padding: 6px 18px;
+    margin-bottom: 20px;
+  }
+  .footer {
+    padding: 14px 18px;
+    text-align: center;
+    color: #9FB0CC;
+    font-size: 11.5px;
+    border-top: 1px solid rgba(255,255,255,.12);
+    background: var(--blue-deep);
+  }
+  .footer a { color: var(--gold); text-decoration: none; font-weight: 700; }
+
+  .toast {
+    position: fixed;
+    left: 50%; bottom: 84px;
+    transform: translateX(-50%);
+    background: var(--blue-deep);
+    color: var(--gold);
+    font-size: 13px; font-weight: 700;
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 6px 20px rgba(0,0,0,.4);
+    opacity: 0;
+    transition: opacity .25s;
+    pointer-events: none;
+    z-index: 40;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <!-- 顶部校名条 -->
+  <div class="top-bar">
+    <div class="badge"><img src="https://aka.doubaocdn.com/s/C7k0cxqUW3" alt="校徽"></div>
+    <div class="titles">
+      <div class="school">黄冈师范学院 · 奶龙大学</div>
+      <span class="game-tag">校园寻龙记 GAME</span>
+    </div>
+  </div>
+
+  <!-- ===== 开始屏 ===== -->
+  <div class="panel start-screen active" id="startPanel">
+    <div class="mascot"><img src="https://aka.doubaocdn.com/s/C7k0cxqUW3" alt="奶龙"></div>
+    <span class="kicker">CAMPUS DRAGON HUNT</span>
+    <h1>校园<em>寻龙记</em></h1>
+    <p class="sub">奶龙悄悄溜进了校园实景照片里<br>把它们全部找出来吧！</p>
+    <ul class="rules">
+      <li>共 <b>5 处校园实景</b>，藏着 <b>11 只奶龙</b></li>
+      <li>轻点画面，找到藏在角落里的奶龙</li>
+      <li>找齐一关的全部奶龙，才能解锁下一关</li>
+      <li>找齐 11 只，即可荣获「<b>奶龙大学荣誉侦探</b>」称号</li>
+    </ul>
+    <button class="btn" id="startBtn">开始寻龙</button>
+  </div>
+
+  <!-- ===== 关卡屏 ===== -->
+  <div class="panel stage-screen" id="stagePanel">
+    <div class="stage-head">
+      <div class="stage-name" id="stageName">第 1 关 · 公园午后</div>
+      <div class="counter" id="stageCounter">0 / 3</div>
+    </div>
+    <div class="stage-progress"><div class="bar" id="stageBar"></div></div>
+    <div class="scene-wrap" id="sceneWrap">
+      <img class="scene hidden" id="sceneImg" alt="校园场景" draggable="false">
+      <div class="loading">图片加载中…</div>
+    </div>
+    <div class="hint-strip"><span class="lamp">💡</span><span id="hintText">找到全部奶龙即可过关！</span></div>
+    <div class="footer">
+      <a href="/">← 返回奶龙大学主页</a>　·　仅供整活娱乐
+    </div>
+  </div>
+
+  <!-- ===== 通关屏 ===== -->
+  <div class="panel win-screen" id="winPanel">
+    <div class="trophy">🏆</div>
+    <h1>恭喜通关！</h1>
+    <p class="sub">你找齐了全部 <b id="winTotal">11</b> 只奶龙<br>正式荣获「奶龙大学荣誉侦探」称号</p>
+    <div class="win-gallery" id="winGallery"></div>
+    <div class="stat" id="winStat">本关已收集全部奶龙</div>
+    <div>
+      <button class="btn" id="replayBtn">再玩一次</button>
+      <br>
+      <button class="btn ghost" id="homeBtn">返回主页</button>
+    </div>
+    <div class="footer" style="margin-top:26px;border-top:1px solid var(--line);background:transparent;color:var(--muted);">
+      <a href="/" style="color:var(--blue-mid);">← 返回奶龙大学主页</a>　·　仅供整活娱乐
+    </div>
+  </div>
+
+  <!-- 过关弹层 -->
+  <div class="overlay" id="passOverlay">
+    <div class="card">
+      <div class="big-mascot"><img src="https://aka.doubaocdn.com/s/C7k0cxqUW3" alt="奶龙"></div>
+      <h2 id="passTitle">本关达成！</h2>
+      <p id="passSub">你找到了这一关的全部奶龙</p>
+      <div class="found-line" id="passLine">发现 3 / 3 只</div>
+      <button class="btn" id="nextBtn">下一关 →</button>
+    </div>
+  </div>
+
+  <!-- 通关弹层（最后一关） -->
+  <div class="overlay" id="finalOverlay">
+    <div class="card">
+      <div class="big-mascot" style="width:96px;height:96px;"><img src="https://aka.doubaocdn.com/s/C7k0cxqUW3" alt="奶龙"></div>
+      <h2>🎉 全部找齐！</h2>
+      <p>11 只奶龙全部归队</p>
+      <div class="found-line">「奶龙大学荣誉侦探」称号已解锁</div>
+      <button class="btn" id="finalNextBtn">领取称号 →</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============ 关卡数据（坐标来自合成图定位） ============ */
+  var IMG = {
+    badge: "https://aka.doubaocdn.com/s/C7k0cxqUW3",
+    emojis: [
+      "https://aka.doubaocdn.com/s/tONnzdNjF9",
+      "https://aka.doubaocdn.com/s/FOyfVVSNNV",
+      "https://aka.doubaocdn.com/s/er8LIys4da",
+      "https://aka.doubaocdn.com/s/FeNRn5XbI8",
+      "https://aka.doubaocdn.com/s/FOzVe166xL",
+      "https://aka.doubaocdn.com/s/NFQ2FRH9VL"
+    ]
+  };
+
+  var LEVELS = [
+    {
+      name: "第 1 关 · 公园午后",
+      img: "https://aka.doubaocdn.com/s/MxOiifGiw1",
+      spots: [
+        { x: 10,  y: 85, r: 10, clue: "左下角的灌木丛边，好像有双眼睛…" },
+        { x: 22,  y: 60, r: 9,  clue: "大树干后面，露出来了一点点…" },
+        { x: 84,  y: 69, r: 9,  clue: "右边树荫下，有什么在挥手？" }
+      ]
+    },
+    {
+      name: "第 2 关 · 林荫步道",
+      img: "https://aka.doubaocdn.com/s/ypVLQBmV0C",
+      spots: [
+        { x: 34.4, y: 75.8, r: 8, clue: "左侧树旁的砖地上…" },
+        { x: 72.2, y: 77.3, r: 8, clue: "右侧电动车堆旁边…" }
+      ]
+    },
+    {
+      name: "第 3 关 · 夜晚球场",
+      img: "https://aka.doubaocdn.com/s/TXYBPOh4mf",
+      spots: [
+        { x: 6.5, y: 63, r: 9,  clue: "绿色围网边，靠着一只…" },
+        { x: 90,  y: 55, r: 10, clue: "场地右侧，它正朝你挥手" }
+      ]
+    },
+    {
+      name: "第 4 关 · 博学楼前",
+      img: "https://aka.doubaocdn.com/s/EzhOfoRIZf",
+      spots: [
+        { x: 27.2, y: 86.9, r: 9, clue: "左边石阶旁，两只小黄玩偶里混进了一只…" },
+        { x: 51.5, y: 88.2, r: 9, clue: "台阶上立着的那只，仔细看看？" }
+      ]
+    },
+    {
+      name: "第 5 关 · 羽毛球馆",
+      img: "https://aka.doubaocdn.com/s/bROiOdWyuc",
+      spots: [
+        { x: 85.6, y: 74.6, r: 9,  clue: "右下场地标线旁，混在装备堆里…" },
+        { x: 13.2, y: 61.8, r: 10, clue: "羽毛球网柱上，挂着一只？" }
+      ]
+    }
+  ];
+
+  var MISS_LINES = [
+    "哎呀，不在那儿～",
+    "再找找，我可会藏了",
+    "嘘——动静小一点",
+    "方向不对，换个地方看看",
+    "嘿嘿，猜错咯",
+    "奶龙表示：你急啥？"
+  ];
+  var LAST_CLUE = "就差一点点！奶龙就在 ";
+
+  /* ============ DOM ============ */
+  var $ = function (id) { return document.getElementById(id); };
+  var startPanel = $("startPanel"), stagePanel = $("stagePanel"), winPanel = $("winPanel");
+  var stageName = $("stageName"), stageCounter = $("stageCounter"), stageBar = $("stageBar");
+  var sceneWrap = $("sceneWrap"), sceneImg = $("sceneImg"), hintText = $("hintText");
+  var passOverlay = $("passOverlay"), finalOverlay = $("finalOverlay");
+  var passTitle = $("passTitle"), passSub = $("passSub"), passLine = $("passLine");
+  var toast = $("toast"), winTotal = $("winTotal"), winStat = $("winStat"), winGallery = $("winGallery");
+
+  /* ============ 状态 ============ */
+  var levelIdx = 0, found = [], missCount = 0, totalFound = 0;
+  var TOTAL = LEVELS.reduce(function (s, l) { return s + l.spots.length; }, 0);
+
+  /* ============ 音频（WebAudio 合成，无外部资源） ============ */
+  var AC = null;
+  function audio() {
+    if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
+    return AC;
+  }
+  function beep(freq, dur, when, vol) {
+    var ac = audio(); if (!ac) return;
+    var t = ac.currentTime + (when || 0);
+    var o = ac.createOscillator(), g = ac.createGain();
+    o.type = "sine"; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol || 0.18, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(ac.destination);
+    o.start(t); o.stop(t + dur + 0.05);
+  }
+  function playFound() { beep(880, 0.12, 0); beep(1320, 0.16, 0.09); }
+  function playPass() { beep(660, 0.14, 0); beep(880, 0.14, 0.12); beep(1100, 0.18, 0.24); beep(1320, 0.3, 0.38); }
+  function playMiss() { beep(220, 0.12, 0, 0.08); }
+
+  /* ============ 工具 ============ */
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(function () { toast.classList.remove("show"); }, 1600);
+  }
+  function fmtFound() {
+    var lv = LEVELS[levelIdx];
+    return found.filter(Boolean).length + " / " + lv.spots.length;
+  }
+
+  /* ============ 进入关卡 ============ */
+  function enterLevel(idx) {
+    levelIdx = idx;
+    var lv = LEVELS[idx];
+    found = lv.spots.map(function () { return false; });
+    missCount = 0;
+
+    stageName.textContent = lv.name;
+    stageCounter.textContent = fmtFound();
+    stageBar.style.width = "0%";
+    hintText.textContent = "找到这一关的全部奶龙！";
+
+    sceneImg.classList.add("hidden");
+    sceneImg.src = lv.img;
+    sceneImg.onload = function () { sceneImg.classList.remove("hidden"); };
+
+    // 清掉旧的标记元素
+    var olds = sceneWrap.querySelectorAll(".found-badge, .ripple, .bubble");
+    for (var i = 0; i < olds.length; i++) olds[i].remove();
+
+    startPanel.classList.remove("active");
+    winPanel.classList.remove("active");
+    stagePanel.classList.add("active");
+  }
+
+  /* ============ 点击判定 ============ */
+  sceneWrap.addEventListener("click", function (e) {
+    var img = sceneImg;
+    if (img.classList.contains("hidden")) return;
+    var rect = img.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+    var px = (e.clientX - rect.left) / rect.width * 100;
+    var py = (e.clientY - rect.top) / rect.height * 100;
+    if (px < 0 || px > 100 || py < 0 || py > 100) return; // 点在留白处
+
+    var lv = LEVELS[levelIdx];
+    var hitIdx = -1;
+    for (var i = 0; i < lv.spots.length; i++) {
+      if (found[i]) continue;
+      var s = lv.spots[i];
+      var dx = px - s.x, dy = py - s.y;
+      if (dx * dx + dy * dy <= s.r * s.r) { hitIdx = i; break; }
+    }
+
+    if (hitIdx >= 0) {
+      found[hitIdx] = true;
+      totalFound++;
+      missCount = 0;
+      playFound();
+
+      var s = lv.spots[hitIdx];
+      // 波纹
+      var rip = document.createElement("div");
+      rip.className = "ripple";
+      rip.style.left = s.x + "%"; rip.style.top = s.y + "%";
+      sceneWrap.appendChild(rip);
+      // 奶龙徽章
+      var badge = document.createElement("div");
+      badge.className = "found-badge";
+      badge.style.left = s.x + "%"; badge.style.top = s.y + "%";
+      var im = document.createElement("img");
+      im.src = IMG.emojis[Math.floor(Math.random() * IMG.emojis.length)];
+      badge.appendChild(im);
+      sceneWrap.appendChild(badge);
+
+      stageCounter.textContent = fmtFound();
+      stageBar.style.width = (found.filter(Boolean).length / lv.spots.length * 100) + "%";
+      showToast("找到奶龙！(+1)");
+
+      if (found.filter(Boolean).length === lv.spots.length) {
+        setTimeout(function () {
+          playPass();
+          if (levelIdx === LEVELS.length - 1) {
+            // 最后一关：直接弹全部找齐
+            finalOverlay.classList.add("show");
+          } else {
+            passTitle.textContent = "第 " + (levelIdx + 1) + " 关达成！";
+            passLine.textContent = "发现 " + lv.spots.length + " / " + lv.spots.length + " 只奶龙";
+            passSub.textContent = "下一处校园角落还有奶龙在等你";
+            passOverlay.classList.add("show");
+          }
+        }, 500);
+      }
+    } else {
+      missCount++;
+      playMiss();
+      var line = MISS_LINES[Math.floor(Math.random() * MISS_LINES.length)];
+      if (missCount >= 3) {
+        // 给线索：指向最近一只未找到的奶龙
+        var best = null, bestD = 1e9;
+        for (var j = 0; j < lv.spots.length; j++) {
+          if (found[j]) continue;
+          var dd = (px - lv.spots[j].x) * (px - lv.spots[j].x) + (py - lv.spots[j].y) * (py - lv.spots[j].y);
+          if (dd < bestD) { bestD = dd; best = lv.spots[j]; }
+        }
+        if (best) { line = "线索：" + best.clue; missCount = 0; }
+      }
+      var bub = document.createElement("div");
+      bub.className = "bubble";
+      bub.style.left = px + "%"; bub.style.top = py + "%";
+      bub.textContent = line;
+      sceneWrap.appendChild(bub);
+      setTimeout(function () { if (bub.parentNode) bub.parentNode.removeChild(bub); }, 1250);
+    }
+  });
+
+  /* ============ 过关 / 下一关 ============ */
+  $("startBtn").addEventListener("click", function () {
+    enterLevel(0);
+  });
+  $("nextBtn").addEventListener("click", function () {
+    passOverlay.classList.remove("show");
+    enterLevel(levelIdx + 1);
+  });
+  $("finalNextBtn").addEventListener("click", function () {
+    finalOverlay.classList.remove("show");
+    // 通关屏
+    stagePanel.classList.remove("active");
+    winTotal.textContent = TOTAL;
+    winStat.textContent = "已集齐 " + totalFound + " / " + TOTAL + " 只奶龙";
+    var g = winGallery;
+    g.innerHTML = "";
+    IMG.emojis.forEach(function (u) {
+      var im = document.createElement("img");
+      im.src = u; im.alt = "奶龙";
+      g.appendChild(im);
+    });
+    winPanel.classList.add("active");
+  });
+  $("replayBtn").addEventListener("click", function () {
+    totalFound = 0;
+    enterLevel(0);
+  });
+  $("homeBtn").addEventListener("click", function () {
+    window.location.href = "/";
+  });
+})();
+</script>
+</body>
+</html>
